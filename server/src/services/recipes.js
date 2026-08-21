@@ -1,28 +1,20 @@
-let recipes = [
-  {
-    id: 1,
-    name: 'Pasta Carbonara',
-    prepTimeMinutes: 10,
-    cookTimeMinutes: 15,
-    difficulty: 'Easy',
-    cuisine: 'Italian',
-  },
-  {
-    id: 2,
-    name: 'Chicken Curry',
-    prepTimeMinutes: 15,
-    cookTimeMinutes: 25,
-    difficulty: 'Medium',
-    cuisine: 'Indian',
-  },
-];
+import { pool } from '../database.js';
 
 export const recipesService = {
-  findAll() {
-    return recipes;
+  async findAll() {
+    const result = await pool.query(
+      'SELECT * FROM recipes ORDER BY id'
+    );
+
+    return result.rows;
   },
 
-  findById(id) {
-    return recipes.find((recipe) => recipe.id === id);
+  async findById(id) {
+    const result = await pool.query(
+      'SELECT * FROM recipes WHERE id = $1',
+      [id]
+    );
+
+    return result.rows[0];
   },
 };

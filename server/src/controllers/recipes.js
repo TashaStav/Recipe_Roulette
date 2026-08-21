@@ -2,16 +2,16 @@ import { recipesService } from '../services/recipes.js';
 import { success, error } from '../utils/response.js';
 
 export const recipesController = {
-  getAll(req, res) {
-    const recipes = recipesService.findAll();
+  async getAll(req, res) {
+    const recipes = await recipesService.findAll();
 
     res.json(success(recipes));
   },
 
-  getById(req, res) {
+  async getById(req, res) {
     const id = parseInt(req.params.id);
 
-    const recipe = recipesService.findById(id);
+    const recipe = await recipesService.findById(id);
 
     if (!recipe) {
       return res.status(404).json(error('Recipe not found', 404));
