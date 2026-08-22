@@ -1,16 +1,14 @@
-import dotenv from 'dotenv';
-import { pool } from './database.js';
+import dotenv from "dotenv";
+import { pool } from "./database.js";
 
 dotenv.config();
 
 async function importRecipes() {
   try {
-    const response = await fetch(
-      'https://dummyjson.com/recipes?limit=50'
-    );
+    const response = await fetch("https://dummyjson.com/recipes?limit=50");
 
     if (!response.ok) {
-      throw new Error('Failed to load recipes');
+      throw new Error("Failed to load recipes");
     }
 
     const data = await response.json();
@@ -58,7 +56,7 @@ async function importRecipes() {
 
     console.log(`Imported ${data.recipes.length} recipes`);
   } catch (error) {
-    console.error('Import failed:', error.message);
+    console.error("Import failed:", error.message);
   } finally {
     await pool.end();
   }

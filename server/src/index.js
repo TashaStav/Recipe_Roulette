@@ -1,16 +1,16 @@
 import express from "express";
-import recipesRouter from './routes/recipes.js';
-import { pool } from './database.js';
+import recipesRouter from "./routes/recipes.js";
+import { pool } from "./database.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.use('/api/recipes', recipesRouter);
+app.use("/api/recipes", recipesRouter);
 
-pool.query('SELECT NOW()').then(() => {
-  console.log('Database connected');
+pool.query("SELECT NOW()").then(() => {
+  console.log("Database connected");
 });
 
 app.listen(PORT, () => {

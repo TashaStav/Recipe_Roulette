@@ -4,13 +4,14 @@ import AddToFavorites from "@/components/AddToFavorites";
 export default async function RecipePage({ params }) {
   const { id } = await params;
 
-  const response = await fetch(`https://dummyjson.com/recipes/${id}`);
+  const response = await fetch(`http://localhost:3000/api/recipes/${id}`);
 
   if (!response.ok) {
     throw new Error("Failed to load recipe");
   }
 
-  const recipe = await response.json();
+  const result = await response.json();
+  const recipe = result.data;
 
   return (
     <main className="mx-auto max-w-4xl p-6">
@@ -29,8 +30,8 @@ export default async function RecipePage({ params }) {
       <AddToFavorites recipe={recipe} />
 
       <div className="mt-6 space-y-2">
-        <p>Preparation: {recipe.prepTimeMinutes} min</p>
-        <p>Cooking: {recipe.cookTimeMinutes} min</p>
+        <p>Preparation: {recipe.prep_time_minutes} min</p>
+        <p>Cooking: {recipe.cook_time_minutes} min</p>
         <p>Servings: {recipe.servings}</p>
         <p>Difficulty: {recipe.difficulty}</p>
         <p>Cuisine: {recipe.cuisine}</p>
@@ -38,6 +39,7 @@ export default async function RecipePage({ params }) {
 
       <section className="mt-6">
         <h2 className="mb-2 text-2xl font-semibold">Ingredients</h2>
+
         <ul className="list-disc pl-6">
           {recipe.ingredients.map((ingredient) => (
             <li key={ingredient}>{ingredient}</li>
@@ -47,6 +49,7 @@ export default async function RecipePage({ params }) {
 
       <section className="mt-6">
         <h2 className="mb-2 text-2xl font-semibold">Instructions</h2>
+
         <ol className="list-decimal pl-6">
           {recipe.instructions.map((step, index) => (
             <li key={index}>{step}</li>

@@ -1,5 +1,5 @@
-import { recipesService } from '../services/recipes.js';
-import { success, error } from '../utils/response.js';
+import { recipesService } from "../services/recipes.js";
+import { success, error } from "../utils/response.js";
 
 export const recipesController = {
   async getAll(req, res) {
@@ -14,7 +14,7 @@ export const recipesController = {
     const recipe = await recipesService.findById(id);
 
     if (!recipe) {
-      return res.status(404).json(error('Recipe not found', 404));
+      return res.status(404).json(error("Recipe not found", 404));
     }
 
     res.json(success(recipe));
