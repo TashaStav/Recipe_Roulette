@@ -11,7 +11,9 @@ export default function RecipeCard({ recipe }) {
 
       <h2 className="mt-2 text-base font-bold">{recipe.name}</h2>
 
-      <p className="mt-1 text-sm">Time: {recipe.prepTimeMinutes} min</p>
+      <p className="mt-1 text-sm">
+        Time: {recipe.prep_time_minutes + recipe.cook_time_minutes} min
+      </p>
 
       <Link
         href={`/recipes/${recipe.id}`}

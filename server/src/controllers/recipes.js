@@ -3,7 +3,9 @@ import { success, error } from "../utils/response.js";
 
 export const recipesController = {
   async getAll(req, res) {
-    const recipes = await recipesService.findAll();
+    const { cuisine, maxTime } = req.query;
+
+    const recipes = await recipesService.findAll(cuisine, maxTime);
 
     res.json(success(recipes));
   },
