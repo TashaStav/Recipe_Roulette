@@ -21,7 +21,13 @@ export const recipesService = {
 
     return result.rows;
   },
+  async findRandom() {
+    const result = await pool.query(
+    "SELECT * FROM recipes ORDER BY RANDOM() LIMIT 1"
+  );
 
+    return result.rows[0];
+},
   async findById(id) {
     const result = await pool.query("SELECT * FROM recipes WHERE id = $1", [
       id,
