@@ -1,5 +1,6 @@
 import Link from "next/link";
 import AddToFavorites from "@/components/AddToFavorites";
+import AddToShoppingList from "@/components/AddToShoppingList";
 
 export default async function RecipePage({ params }) {
   const { id } = await params;
@@ -27,7 +28,10 @@ export default async function RecipePage({ params }) {
         className="mb-4 w-full rounded-md"
       />
 
-      <AddToFavorites recipe={recipe} />
+      <div className="flex gap-2">
+        <AddToFavorites recipe={recipe} />
+        <AddToShoppingList recipe={recipe} />
+      </div>
 
       <div className="mt-6 space-y-2">
         <p>Preparation: {recipe.prep_time_minutes} min</p>

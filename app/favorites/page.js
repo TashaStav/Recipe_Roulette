@@ -50,7 +50,7 @@ export default function FavoritesPage() {
               <h2 className="mt-3 text-lg font-semibold">{recipe.name}</h2>
 
               <p className="mt-1 text-sm text-gray-600">
-                Time: {recipe.prepTimeMinutes} min
+                Time: {recipe.prep_time_minutes + recipe.cook_time_minutes} min
               </p>
 
               <div className="mt-4 flex gap-4">
