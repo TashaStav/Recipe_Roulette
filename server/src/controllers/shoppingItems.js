@@ -12,7 +12,9 @@ export const shoppingItemsController = {
     const { recipeId, ingredient } = req.body;
 
     if (!recipeId || !ingredient) {
-      return res.status(400).json(error("recipeId and ingredient are required", 400));
+      return res
+        .status(400)
+        .json(error("recipeId and ingredient are required", 400));
     }
 
     const item = await shoppingItemsService.create(recipeId, ingredient);

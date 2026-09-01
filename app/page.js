@@ -11,10 +11,7 @@ export default function Home() {
       </p>
 
       <div className="flex justify-center gap-4">
-        <Link
-          href="/recipes"
-          className="rounded bg-black px-5 py-3 text-white"
-        >
+        <Link href="/recipes" className="rounded bg-black px-5 py-3 text-white">
           View Recipes
         </Link>
 

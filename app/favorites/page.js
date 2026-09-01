@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -41,16 +42,18 @@ export default function FavoritesPage() {
         <div className="grid gap-4 md:grid-cols-2">
           {favorites.map((recipe) => (
             <div key={recipe.id} className="rounded-md border bg-white p-4">
-              <img
+              <Image
                 src={recipe.image}
                 alt={recipe.name}
+                width={600}
+                height={400}
                 className="h-40 w-full rounded-md object-cover"
               />
 
               <h2 className="mt-3 text-lg font-semibold">{recipe.name}</h2>
 
               <p className="mt-1 text-sm text-gray-600">
-                Time: {recipe.prep_time_minutes + recipe.cook_time_minutes} min
+                Time: {recipe.prepTimeMinutes} min
               </p>
 
               <div className="mt-4 flex gap-4">

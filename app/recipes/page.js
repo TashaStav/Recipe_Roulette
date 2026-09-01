@@ -49,7 +49,28 @@ export default function RecipesPage() {
   }
 
   useEffect(() => {
-    loadRecipes();
+    async function fetchRecipes() {
+      try {
+        setLoading(true);
+        setError("");
+
+        const response = await fetch("http://localhost:3000/api/recipes");
+
+        if (!response.ok) {
+          throw new Error("Failed to load recipes");
+        }
+
+        const data = await response.json();
+
+        setRecipes(data.data);
+      } catch (error) {
+        setError("Failed to load recipes");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchRecipes();
   }, []);
 
   function resetFilters() {

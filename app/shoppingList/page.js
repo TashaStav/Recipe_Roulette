@@ -12,9 +12,7 @@ export default function ShoppingListPage() {
       setLoading(true);
       setError("");
 
-      const response = await fetch(
-        "http://localhost:3000/api/shopping-list",
-      );
+      const response = await fetch("http://localhost:3000/api/shopping-list");
 
       if (!response.ok) {
         throw new Error("Failed to load shopping list");
@@ -31,7 +29,28 @@ export default function ShoppingListPage() {
   }
 
   useEffect(() => {
-    loadItems();
+    async function fetchItems() {
+      try {
+        setLoading(true);
+        setError("");
+
+        const response = await fetch("http://localhost:3000/api/shopping-list");
+
+        if (!response.ok) {
+          throw new Error("Failed to load shopping list");
+        }
+
+        const result = await response.json();
+
+        setItems(result.data);
+      } catch (error) {
+        setError("Failed to load shopping list");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchItems();
   }, []);
 
   async function removeItem(id) {
@@ -47,9 +66,7 @@ export default function ShoppingListPage() {
         throw new Error("Failed to remove item");
       }
 
-      setItems((currentItems) =>
-        currentItems.filter((item) => item.id !== id),
-      );
+      setItems((currentItems) => currentItems.filter((item) => item.id !== id));
     } catch (error) {
       setError("Failed to remove item");
     }

@@ -14,7 +14,7 @@ export const recipesController = {
     const recipe = await recipesService.findRandom();
 
     res.json(success(recipe));
-},
+  },
 
   async getById(req, res) {
     const id = parseInt(req.params.id);

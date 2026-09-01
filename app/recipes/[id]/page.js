@@ -1,6 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
 import AddToFavorites from "@/components/AddToFavorites";
-import AddToShoppingList from "@/components/AddToShoppingList";
 
 export default async function RecipePage({ params }) {
   const { id } = await params;
@@ -22,16 +22,15 @@ export default async function RecipePage({ params }) {
 
       <h1 className="mt-4 mb-4 text-3xl font-bold">{recipe.name}</h1>
 
-      <img
+      <Image
         src={recipe.image}
         alt={recipe.name}
+        width={800}
+        height={600}
         className="mb-4 w-full rounded-md"
       />
 
-      <div className="flex gap-2">
-        <AddToFavorites recipe={recipe} />
-        <AddToShoppingList recipe={recipe} />
-      </div>
+      <AddToFavorites recipe={recipe} />
 
       <div className="mt-6 space-y-2">
         <p>Preparation: {recipe.prep_time_minutes} min</p>

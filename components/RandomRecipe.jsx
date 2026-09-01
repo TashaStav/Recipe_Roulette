@@ -11,9 +11,7 @@ export default function RandomRecipe() {
     try {
       setLoading(true);
 
-      const response = await fetch(
-        "http://localhost:3000/api/recipes/random"
-      );
+      const response = await fetch("http://localhost:3000/api/recipes/random");
 
       if (!response.ok) {
         throw new Error("Failed to load random recipe");

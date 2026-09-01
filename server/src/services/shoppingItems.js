@@ -2,9 +2,7 @@ import { pool } from "../database.js";
 
 export const shoppingItemsService = {
   async findAll() {
-    const result = await pool.query(
-      "SELECT * FROM shopping_items ORDER BY id",
-    );
+    const result = await pool.query("SELECT * FROM shopping_items ORDER BY id");
 
     return result.rows;
   },
